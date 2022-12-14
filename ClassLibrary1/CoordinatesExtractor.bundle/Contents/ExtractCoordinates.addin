@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="DBApplication">
+    <Name>CoordinatesExtractor</Name>
+    <FullClassName>CoordinatesExtractor.CoordinatesExtractor</FullClassName>
+    <Text>CoordinatesExtractor</Text>
+    <Description>Extract coordinates of Revit model</Description>
+    <VisibilityMode>AlwaysVisible</VisibilityMode>
+    <Assembly>CoordinatesExtractor.dll</Assembly>
+    <AddInId>2843d9d1-1ee7-4f98-b7f7-c79a9ff77133</AddInId>
+    <VendorId>ADSK</VendorId>
+    <VendorDescription>Autodesk, Inc, www.autodesk.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>

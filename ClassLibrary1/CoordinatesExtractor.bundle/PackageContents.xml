@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationPackage Name="CoordinatesExtractor" Description="Sample Plugin to extract Revit Coordinates" Author="Autodesk">
+  <CompanyDetails Name="Autodesk, Inc" Url="https://github.com/JoaoMartins-callmeJohn" Email="joao.martins@autodesk.com"/>
+  <Components Description="Extract Project Coordinates">
+    <RuntimeRequirements SeriesMax="R2023" SeriesMin="R2019" Platform="Revit" OS="Win64"/>
+    <ComponentEntry LoadOnRevitStartup="True" LoadOnCommandInvocation="False" AppDescription="Extract Coordinates" ModuleName="./Contents/ExtractCoordinates.addin" Version="1.0.0" AppName="Extract Project Coordinates"/>
+  </Components>
+</ApplicationPackage>
