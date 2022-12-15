@@ -49,6 +49,7 @@ namespace CoordinatesExtractor
 			if (doc == null) throw new InvalidOperationException("Could not open document.");
 
 			List<Coordinates> coordinates = GetCoordinates("coordinates.csv");
+			Console.WriteLine("Coordinates acquired!");
 
 			InputParams inputParameters = JsonConvert.DeserializeObject<InputParams>(File.ReadAllText("params.json"));
 
