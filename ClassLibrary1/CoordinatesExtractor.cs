@@ -100,30 +100,14 @@ namespace CoordinatesExtractor
 
 		private void createIssue(InputParams inputParameters, Coordinates correctCoordinates, BasePoint sp, BasePoint pbp, string fileName)
 		{
-			dynamic body = new JObject();
-			body.title = $"{fileName} Coordinates issue";
-			body.description = $"file: {fileName}; {Environment.NewLine} " +
-				$"urn: {inputParameters.versionUrn}; {Environment.NewLine} " +
-				$"project_base_point: {pbp.Position.ToString()}; {Environment.NewLine} " +
-				$"project_survey_point: {sp.Position.ToString()}; {Environment.NewLine} " +
-				$"correct_base_point: {correctCoordinates.basePoint.ToString()}; {Environment.NewLine} " +
-				$"correct_survey_point: {correctCoordinates.surveyPoint.ToString()}; {Environment.NewLine} ";
-			body.status = "open";
-			body.issueSubtypeId = inputParameters.issueSubTypeId;
-			body.assignedTo = inputParameters.userId;
-			body.assignedToType = "user";
-			body.published = true;
-
-
 			RestClient client = new RestClient("https://developer.api.autodesk.com/");
 			RestRequest request = new RestRequest($"construction/issues/v1/projects/{inputParameters.projectId}/issues", Method.Post);
 			request.AddHeader("Authorization", "Bearer " + inputParameters.token);
 			request.AddHeader("Content-Type", "application/json");
-			string stringBody = JsonConvert.SerializeObject(body);
-			request.AddParameter("application/json", stringBody, ParameterType.RequestBody);
+			request.AddParameter("application/json", "{"+$"\n        \"title\": \"{fileName} Coordinates issue\",\n        \"description\": \"file: {fileName};urn: {inputParameters.versionUrn};project_base_point: {pbp.Position.ToString()};project_survey_point: {sp.Position.ToString()};correct_base_point: {correctCoordinates.basePoint.ToString()};correct_survey_point: {correctCoordinates.surveyPoint.ToString()};\",\n        \"issueSubtypeId\": \"{inputParameters.issueSubTypeId}\",\n        \"status\": \"open\",\n        \"assignedTo\": \"{inputParameters.userId}\",\n        \"assignedToType\": \"user\",\n        \"published\": true\n      " +"}", ParameterType.RequestBody);
 
-			var result = client.ExecuteAsync(request).GetAwaiter().GetResult();
-			Console.WriteLine(result);
+			RestResponse result = client.ExecuteAsync(request).GetAwaiter().GetResult();
+			Console.WriteLine(result.Content);
 		}
 
 		private bool coordinatesMismatch(Coordinates correctCoordinates, BasePoint sp, BasePoint pbp, double tolerance)
