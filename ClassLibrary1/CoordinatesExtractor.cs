@@ -104,7 +104,7 @@ namespace CoordinatesExtractor
 			RestRequest request = new RestRequest($"construction/issues/v1/projects/{inputParameters.projectId}/issues", Method.Post);
 			request.AddHeader("Authorization", "Bearer " + inputParameters.token);
 			request.AddHeader("Content-Type", "application/json");
-			request.AddParameter("application/json", "{"+$"\n        \"title\": \"{fileName} Coordinates issue\",\n        \"description\": \"file: {fileName};urn: {inputParameters.versionUrn};project_base_point: {pbp.Position.ToString()};project_survey_point: {sp.Position.ToString()};correct_base_point: {correctCoordinates.basePoint.ToString()};correct_survey_point: {correctCoordinates.surveyPoint.ToString()};\",\n        \"issueSubtypeId\": \"{inputParameters.issueSubTypeId}\",\n        \"status\": \"open\",\n        \"assignedTo\": \"{inputParameters.userId}\",\n        \"assignedToType\": \"user\",\n        \"published\": true\n      " +"}", ParameterType.RequestBody);
+			request.AddParameter("application/json", "{"+$"\n        \"title\": \"{fileName} Coordinates issue\",\n        \"description\": \"<a href=\"http://localhost:8080/issues/?urn={inputParameters.versionUrn}&output={inputParameters.outputUrn}\" target=\"_blank\">Click to view issues</a>; file: {fileName};project_base_point: {pbp.Position.ToString()};project_survey_point: {sp.Position.ToString()};correct_base_point: {correctCoordinates.basePoint.ToString()};correct_survey_point: {correctCoordinates.surveyPoint.ToString()};\",\n        \"issueSubtypeId\": \"{inputParameters.issueSubTypeId}\",\n        \"status\": \"open\",\n        \"assignedTo\": \"{inputParameters.userId}\",\n        \"assignedToType\": \"user\",\n        \"published\": true\n      " +"}", ParameterType.RequestBody);
 
 			RestResponse result = client.ExecuteAsync(request).GetAwaiter().GetResult();
 			Console.WriteLine(result.Content);
@@ -163,6 +163,7 @@ namespace CoordinatesExtractor
 		public string token { get; set; }
 		public string issueSubTypeId { get; set; }
 		public string fileName { get; set; }
+		public string outputUrn { get; set; }
 	}
 
 	public class Coordinates
