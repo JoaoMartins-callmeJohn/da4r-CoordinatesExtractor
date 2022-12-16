@@ -36,6 +36,18 @@ This sample demonstrates a way to retrieve coordinates (project base point, surv
       "required": true,
       "localName": "$(inputFile)"
     },
+    "coordinates": {
+      "zip": false,
+      "verb": "get",
+      "description": "Coordinates csv",
+      "localName": "coordinates.csv"
+    },
+    "inputParams": {
+      "zip": false,
+      "verb": "get",
+      "description": "Input parameters",
+      "localName": "params.json"
+    },
     "result": {
       "zip": false,
       "verb": "put",
@@ -59,12 +71,32 @@ This sample demonstrates a way to retrieve coordinates (project base point, surv
   "arguments": {
     "inputFile": {
       "url": "URL TO DOWNLOAD THE INPUT FILE (BIM360/ACC)",
+      "verb": "get",
       "Headers": {
         "Authorization": "Bearer TOKEN"
       }
     },
+    "coordinates": {
+      "url": "URL TO DOWNLOAD THE INPUT COORDINATES CSV",
+      "verb": "get",
+      "Headers": {
+        "Authorization": "Bearer TOKEN"
+      }
+    },
+    "inputParams": {
+      "verb": "get",
+      "url": "data:application/json,{
+        'userId': 'some user id',
+        'versionUrn': 'some version urn',
+        'projectId: 'some project id',
+        'hubId': 'some hubid',
+        'tolerance': 0.1,
+        'token': 'your token',
+        'issueSubTypeId': 'some issue subtype id'
+      }"
+    },
     "result": {
-      "verb": "post",
+      "verb": "put",
       "url": "URL TO UPLOAD THE RESULT",
       "Headers": {
         "Content-Type": "application/json"
@@ -94,4 +126,4 @@ This sample is licensed under the terms of the [MIT License](http://opensource.o
 
 ## Written by
 
-Jo„o Martins [@JooPaulodeOrne2](http://twitter.com/JooPaulodeOrne2), [APS Partner Development](http://aps.autodesk.com)
+Jo√£o Martins [@JooPaulodeOrne2](http://twitter.com/JooPaulodeOrne2), [APS Partner Development](http://aps.autodesk.com)
