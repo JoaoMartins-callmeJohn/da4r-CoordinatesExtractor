@@ -56,7 +56,6 @@ namespace CoordinatesExtractor
 			dynamic urnResult = new JObject();
 			try
 			{
-				//urnResult.projectBasePoint = BasePoint.GetProjectBasePoint(doc);
 				BasePoint pbp = BasePoint.GetProjectBasePoint(doc);
 				Console.WriteLine($"Project base point acquired!");
 				Console.WriteLine(pbp.Position.ToString());
@@ -69,7 +68,7 @@ namespace CoordinatesExtractor
 				Console.WriteLine($"True north angle acquired!");
 				Console.WriteLine(pp);
 				urnResult.trueNorthAngle = pp;
-				string fileName = doc.Title;
+				string fileName = inputParameters.fileName;
 
 				try
 				{
@@ -179,6 +178,7 @@ namespace CoordinatesExtractor
 		public double tolerance { get; set; }
 		public string token { get; set; }
 		public string issueSubTypeId { get; set; }
+		public string fileName { get; set; }
 	}
 
 	public class Coordinates
