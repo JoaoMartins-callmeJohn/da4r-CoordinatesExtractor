@@ -86,13 +86,13 @@ This sample demonstrates a way to retrieve coordinates (project base point, surv
     "inputParams": {
       "verb": "get",
       "url": "data:application/json,{
-        "userId": "some user id",
-        "versionUrn": "some version urn",
-        "projectId": "some project id",
-        "hubId": "some hubid",
-        "tolerance": 0.1,
-        "token": "your token",
-        "issueSubTypeId": "some issue subtype id"
+        'userId': 'some user id',
+        'versionUrn': 'some version urn',
+        'projectId: 'some project id',
+        'hubId': 'some hubid',
+        'tolerance': 0.1,
+        'token': 'your token',
+        'issueSubTypeId': 'some issue subtype id'
       }"
     },
     "result": {
